@@ -1,8 +1,23 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+
+  useEffect(() => {
+    const handleSpace = (e: KeyboardEvent) => {
+        if(e.key === " ") {
+          console.log("space")
+            setCount(count+1);
+        }
+    }
+
+    document.addEventListener("keydown", handleSpace);
+
+    return () => {
+        document.removeEventListener("keydown", handleSpace);
+    }
+}, [count])
 
   return (
     <>
